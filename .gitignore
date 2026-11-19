@@ -1,0 +1,42 @@
+.env*
+!.env.example
+
+/data
+
+# Excel copies of raw inputs kept under archive/ - live copies are in /data
+/archive/**/*.xlsx
+
+# Trained model artifacts + registry.json from train.py - run outputs, not source
+/models
+
+# Per-run log files (adj_forecast_lib/logging_setup.py) - run outputs, not source
+/logs
+
+# Parquet result tables (seed_overall_results/log_predictions_to_overall) - regeneratable run
+# outputs; the existing CSVs in results/ stay tracked/committed
+/results/**/*.parquet
+
+# daily_backtest stores (fits, sidecars, config.json, plots) - run outputs, rebuilt by rerunning
+/results/*/daily_backtest/
+
+# MLflow local tracking store - machine-local run history, regenerated on first tracked run
+mlflow.db
+mlruns/
+
+# Editor/tooling caches and metadata - auto-generated, machine-local
+.stubs/
+.vfscache/
+.vfsmeta/
+.vscode/
+.work-folder-info
+
+# uv-managed virtual environment - machine-local, recreated via `uv sync` from
+# pyproject.toml/uv.lock, which ARE committed
+.venv/
+manual_review_skus.csv
+test.r
+*.png
+*.csv
+__pycache__/
+*.pyc
+catboost_info/
